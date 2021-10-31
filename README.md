@@ -39,3 +39,5 @@ This course teaches students using the most relevant data analytic tools in the 
 ### Part VI: Project Presentation and Storytelling
 
 #### Week 12: Business Presentation and Storytelling
+
+Resources: (Storytelling)[https://www.forbes.com/sites/brentdykes/2016/03/31/data-storytelling-the-essential-data-science-skill-everyone-needs/?sh=6dbd711852ad]
