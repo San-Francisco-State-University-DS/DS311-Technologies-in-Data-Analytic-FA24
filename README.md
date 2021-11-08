@@ -62,13 +62,13 @@ This course teaches students using the most relevant data analytic tools in the 
 
 3. Exploratory Data Analysis with Tableau Notebook
 
-#### Week 9: Writing Markdown Documentation
+#### Week 10: Writing Markdown Documentation
 
 1. Jupyter Notebook Markdown, R Markdown, and Git Markdown.
 
 ### Part VI: Project Presentation and Storytelling
 
-#### Week 12: Business Presentation and Storytelling
+#### Week 11: Business Presentation and Storytelling
 
 1. Businesss Presentation PPT
 
