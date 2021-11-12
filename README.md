@@ -1,7 +1,7 @@
+![sfsu](images/sfsu.jpeg)
+
 # DS311-Technologies-in-Data-Analytic
 This course introduces the most relevant data analytic tools in any data-driven industries. 
-
-![sfsu](images/sfsu.jpeg)
 
 ## Course Structure:
 
