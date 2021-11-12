@@ -75,5 +75,5 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 Resources: 
 
-- Storytelling: https://www.forbes.com/sites/brentdykes/2016/03/31/data-storytelling-the-essential-data-science-skill-everyone-needs/?sh=6dbd711852ad
-- Tableau Cheat Sheet: https://howto.mt.gov/_docs/Tableau-Cheat-Sheet.pdf
+https://www.forbes.com/sites/brentdykes/2016/03/31/data-storytelling-the-essential-data-science-skill-everyone-needs/?sh=6dbd711852ad
+https://howto.mt.gov/_docs/Tableau-Cheat-Sheet.pdf
