@@ -17,31 +17,35 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 #### Week 2: Python Data Structure
 
-1. Fundamental Python Notebook
+1. Basic Coding Syntax (Jupyter Notebook)
+
+2. Basic Data Structure (Jupyter Notebook)
+
+3. Control Flow Tools (Jupyter Notebook)
 
 #### Week 3: Pandas and MatPlotLib
 
-1. Pandas Notebook
+1. Pandas (Jupyter Notebook )
 
-2. Matplotlib Notebook
+2. Matplotlib (Jupyter Notebook)
 
 ### Part III: Basic SQL Queries
 
 #### Week 4: SQL Queries and Subqueries
 
-1. SQL Query Notebook
+1. SQL Query (Jupyter Notebook)
 
-2. SQL Sub-Query Notebook
+2. SQL Sub-Query (Jupyter Notebook)
 
 ### Part IV: Introduction to R
 
 #### Week 5: Introduction to Base R
 
-1. Fundamental R Markedown
+1. Fundamental R (R Markedown)
 
 #### Week 6: Tidyverse
 
-1. Tidyverse R Markdown
+1. Tidyverse R (R Markdown)
 
 ### Part V: Tableau
 
