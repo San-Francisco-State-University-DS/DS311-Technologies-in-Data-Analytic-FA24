@@ -1,15 +1,15 @@
 ---
 title: "R Control Flow Tools"
 author: "Norman Lo"
-date: "6/16/2020"
-output: html_document
+date: "12/1/2021"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Control Flow Tools
+# R Control Flow Tools
 
 In order to control the execution of the expression flow in R, we make use of the logical **Control flow tools** or control structures in R. R provides various standard control flow tools for testing different conditions and facilitates the flow of execution to be controled inside a function. We cover the following control flow tools in R in this lesson:
 
@@ -20,7 +20,7 @@ In order to control the execution of the expression flow in R, we make use of th
 - while loop
 - break and next
 
-#### 4.1 - if and else statements
+## 4.1 - if and else statements
 
 Like most of the programming languages, logical test is usually performed using the '**if**' statement. The 'if' statement evaluates an expression(s) and check whether a condition is met, then returns a **boolean** condition, where one value (1) if TRUE and another value (0) if FALSE. The code(s) will be executed only if the condition is returned as TRUE; otherwise, it either jumps into the an '**else**' condition test or ends the program flow. As mentioned in the previous sections, TRUE has the equal value of "1" and FALSE is equal to "0" in R.
 
@@ -129,7 +129,7 @@ check.bool(2)
 check.bool("k")
 ```
 
-#### 4.2 - Switch
+## 4.2 - Switch
 
 When there are multiple conditions to test, the code will get complex and difficult to read using if-else statements. R provides an alternative function "switch()", which can complete to the task efficiently. The switch() function in R tests an expression against element of a list. If the value evaluated from the expression matches item from the list, the corresponding value is returned.
 
@@ -187,7 +187,7 @@ use.switch(6)
 is.null(use.switch(6))
 ```
 
-#### 4.3 - ifelse
+## 4.3 - ifelse
 
 The "if" statement in R is similar to the "if" statement in the traditional programming lanugage like C, C++, Java, etc. The ifelse() function in R is more like the application of if() function in Excel. The first argument specifies the conditional statement for testing, the second argument is the return value if the conditional test is TRUE, and the third argument is the return value if the conditional test is FALSE. Unlike the traditional "if" statement, one of the key advantage of ifelse() function in R is that it applies to vector and utilize vectorized operation. Here are few examples demonstrate the advantage of ifelse() function.
 
@@ -236,7 +236,7 @@ ifelse(a == 1 & b == 1, "YES", "NO")
 ifelse(a == 1 && b == 1, "YES", "NO")
 ```
 
-#### 4.4 - for loop
+## 4.4 - for loop
 
 Like we mentioned in the previous sections, many of the R built-in functions utilize the vectorized operation to improve performance and computational power. However, there are some cases where the calculations need to be done by iterating a vector, list, or data.frame. Therefore, R also features the **for** and **while** loop statements for the control flow commands.
 
@@ -288,7 +288,7 @@ fruitLength2
 identical(fruitLength, fruitLength2)
 ```
 
-#### 4.5 - while loop
+## 4.5 - while loop
 
 In R programming, **while** loop is less used compare to the **for** loop. While loop in R is again similar to while loop in any other programming language, which repeat the specific block of code until the condition is no longer satisfied. First the condition is evaluated and only when it holds TRUE, while loop enters the body. Here is an example to demonstrate the use of while loop and iterate a variable until it reaches 5.
 
@@ -304,7 +304,7 @@ while (x <= 5){
 }
 ```
 
-#### 4.6 - break and next statements
+## 4.6 - break and next statements
 
 Under certain condition, we may need to jump or skip an interation or even break or stop the loop. We can use the **next** or **break** statement to control the flow of the program. Here are two examples illustrate the use of the two statements.
 
@@ -322,7 +322,7 @@ for (i in 1:10) {
 
 Note that the value 3 is not included in the return output because when i equals 3, it jumps into the **next** statement and jump to the next iteration.
 
-If we want to stop a loop once it hits certain condition test, we can use the **break** statement to force a stop of the interation.
+If we want to stop a loop once it hits certain condition test, we can use the **break** statement to force a stop of the iteration.
 
 ``` {r break_next2}
 # Create a for loop with break statement
@@ -338,6 +338,6 @@ for (i in 1:10){
 
 In this example, we see the output break after the value 3 is printed because when the iteration hits 4, it gets into the break statement and the for loop is forced to stop.
 
-#### Summary:
+## Summary:
 
-We only introduce the basic control flow tools in this section, but there are many tools are also available in R. "for" loop is great for iterating a vector of elements and the "while" loop is flexible to repeat the same task(s) until certain condition is met. Like we mentioned many times before, R offers many vectorized operators for different data operation and we should always utilize these tools before using the loop operation becasue of the advantage of efficiency and performance. Also, unlike other programming language, we should always try to avoid writing nested loops in R because of the performance issue.
+We only introduce the basic control flow tools in this section, but there are many tools are also available in R. "for" loop is great for iterating a vector of elements and the "while" loop is flexible to repeat the same task(s) until certain condition is met. Like we mentioned many times before, R offers many vectorized operators for different data operation and we should always utilize these tools before using the loop operation because of the advantage of efficiency and performance. Also, unlike other programming language, we should always try to avoid writing nested loops in R because of the performance issue.

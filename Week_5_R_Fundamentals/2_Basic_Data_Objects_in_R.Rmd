@@ -1,18 +1,18 @@
 ---
 title: "Basic Data Objects in R"
 author: "Norman Lo"
-date: "5/21/2020"
-output: html_document
+date: "12/1/2021"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## General Data Objects in R
+# General Data Objects in R
 
 In the previous section, we have mentioned about the most common data structure in R, "vector". However, in many cases, data needs to be stored in a higher dimension data structure. In R, several data structures are offered to satisfy our need to manage different data sources.  In this section, we are going to cover the most popular data structures in R, which includes data.frame, matrix, list, and array.
 
-## 2.1 - data.frame
+# 2.1 - data.frame
 
 **data.frame** is a two dimensional data structure in R. It is a special case of a vector which has each component of equal length. Each component form the column and contents of hte component form the rows. Generally speaking, data.frame is similar to Excel spreadsheet.
 
@@ -98,7 +98,6 @@ If you want to check the type of data structure, you can use the class() functio
 ```{r data.frame 6, theDF=theDF}
 # Check the type of the data structure
 class(theDF)
-
 ```
 
 
@@ -187,7 +186,7 @@ newFactor <- factor(c("Pennsylvania", "New York", "New Jersey", "New York",
 model.matrix(~newFactor - 1)
 ```
 
-## 2.2 - List
+# 2.2 - List
 
 When we are trying to have a collection of different data objects, we can use the **list** data structure to collect them. List can store any type or length of data object, such as numeric, character, mixed of numeric and character data, data.frame, or a list.
 
@@ -277,7 +276,7 @@ list5
 
 Note: In most cases, adding new element to a list is not going to create efficient problem. However, as a list expands, especially with data.frame or list, it would increase the computational complexity. Therefore, it's suggested to set the length of the list at the beginning and fill it with the proper index.
 
-## 2.3 - Matrix
+# 2.3 - Matrix
 
 **Matrix** is an important mathematical structure in statistical computation. It's similar to data.frame, which represents a collection of numbers arranged in an order of rows and columns. The only different is that matrix requires all elements to be the same data type, which is usually numeric. Same as vector, matrix calculation is based on vectorized computation. The data.frame attributes, such as nrow(), ncol(), and dim(), also apply to matrix. Here are some examples to demonstrate:
 
@@ -366,9 +365,9 @@ t(A)
 A %*% C
 ```
 
-## 2.4 - Array
+# 2.4 - Array
 
-**Array** is the R data object that can store data in more than two dimensions. Array can store only the same data type. An array is created using the array() function in R. Similar to a vector, we can use the square brackets to extract elements from an array. The first arugment refers to the row of each element, the second argument refers to the column of each element, and finally the thrid argument refers to the index of the element. Here is an example to demonstrate:
+**Array** is the R data object that can store data in more than two dimensions. Array can store only the same data type. An array is created using the array() function in R. Similar to a vector, we can use the square brackets to extract elements from an array. The first argument refers to the row of each element, the second argument refers to the column of each element, and finally the third argument refers to the index of the element. Here is an example to demonstrate:
 
 ``` {r Array 1}
 # Create a array with 2 two dimensional vectors
@@ -385,6 +384,6 @@ theArray[1, , 1]
 theArray[ , , 1]
 ```
 
-### Summary:
+## Summary:
 
 Most people do not realize the importance of the data type they are dealing with in their project. In fact, it could be frustrating when you are trying to debug some the errors with different statistical package in R. Most of the time, the errors are related to the type of data required in those packages. Therefore, it's very important to learn all the different data structures in R before using different statistical packages.

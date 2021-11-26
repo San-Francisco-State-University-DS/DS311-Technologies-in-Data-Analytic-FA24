@@ -1,21 +1,21 @@
 ---
 title: "Reading Data into R"
 author: "Norman Lo"
-date: "6/5/2020"
-output: html_document
+date: "12/1/2021"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Reading Different Data Source into R
+# Reading Different Data Source into R
 
 We have covered the basic features of R in the first two sections. In this section, we would like to explore how to read data from different data source into R for analysis. R offers several methods to read data from different sources, the most common one is reading from CSV (comma separated values) file and the basic excel file format. R also has the capability to read from relational database, internet data, and computer science data format "JSON". 
 
-#### 3.1 - Reading CSV File
+## 3.1 - Reading CSV File
 
-The best way to read a CSV file to R is using read.table() function. Many people starts with read.csv() function, but it's actually a wrapper function from read.table(), which is the same as using the **sep** arugment with a comma (",") in read.table() function. read.table() function returns a R data.frame object. 
+The best way to read a CSV file to R is using read.table() function. Many people starts with read.csv() function, but it's actually a wrapper function from read.table(), which is the same as using the **sep** argument with a comma (",") in read.table() function. read.table() function returns a R data.frame object. 
 
 The way to use read.table() function is to put the **absolute path** to the CSV file in the first argument. The path could be the location to the file in the machine or it could be a file from the internet. We are going to demonstrate to read a CSV file from the URL in this exercise.
 
@@ -64,7 +64,7 @@ head(tomato2)
 
 Similar to read.table(), the first argument of the read_delim() function is the path to the CSV file. The second argument col_names is default to be TRUE and the third argument delim=", " reads the data separated by commas. Note that read_delim() function or other data reading functions from readr package return a tibble object, which is a modern reimagining of the data.frame. In the readr package, read_csv, read_csv2, and read_tsv functions are the special cases, which separate the data by comma (, ), semi-colon (;), and tab (\t).
 
-An alternative would be fread() function from data.table package. Similar to the previous data reading function, the first argument is the path or URL to the CSV file. The second argument sep=', ' represents the data separated by comma. The third argument header=TRUE reads the first row as the column names. This function also has the stringsAsFactor arugment, which is default to be FALSE.
+An alternative would be fread() function from data.table package. Similar to the previous data reading function, the first argument is the path or URL to the CSV file. The second argument sep=', ' represents the data separated by comma. The third argument header=TRUE reads the first row as the column names. This function also has the stringsAsFactor argument, which is default to be FALSE.
 
 ``` {r CSV4}
 # Loading data.table package
@@ -80,12 +80,12 @@ head(tomato3)
 
 Genearlly speaking, both read_delim() and fread() are efficient functions for loading CSV file into R. The choice depends on the package (dplyr or data.table) that you are more fimilar to work with. 
 
-#### 3.2 - Reading Excel Files
+## 3.2 - Reading Excel Files
 
 Excel is the most popular data analytic tools, which is simple, powerful, and easy to learn. In many documentation from the R community, it was suggested to transform excel file to CSV file and read it into R by read.csv() function. In the recent years, reading excel file into R is getting simplier, which we can use the **readxl** package developed by Hadley Wickham. The function we are going to use to read either .xls or .xlsx files is read_excel(). Unlike read.table(), read_delim(), and fread(), read_excel() cannot read file from internet source (URL). In this example, we use download.file() to download the excel file from the internet source, then use read_excel() reading the data into R.
 
 ``` {r Excel1}
-# Downlaoding an excel file from the internet
+# Downloading an excel file from the internet
 download.file(url='http://www.jaredlander.com/data/ExcelExample.xlsx',
               destfile='data/ExcelExample.xlsx', mode='wb')
 
@@ -117,7 +117,7 @@ wineXL2 <- read_excel('data/ExcelExample.xlsx', sheet='Wine')
 head(wineXL2)
 ```
 
-#### 3.3 - Connecting to Database
+## 3.3 - Connecting to Database
 
 In practice, most of the company data is stored into the database. Most of these database, such as PostgreSQL, MySQL, Microsoft SQL server, or Microsoft Access, can be connected using different program. A common way to connect to a database is using ODBC connection. Two of the most popular open source packages for database connection are RPostgreSQL and RMySQL. Building a connection to different database is not an easy task, which DBI package aims to 
 construct a standardized connection structure to achieve the task.
@@ -126,70 +126,70 @@ In this section, we only demonstrate building a connect to a simple database SQL
 
 ``` {r Database1}
 # Downloading database file
-download.file("http://www.jaredlander.com/data/diamonds.db",
+# download.file("http://www.jaredlander.com/data/diamonds.db",
               destfile="data/diamonds", mode="wb")
 
 # Loading RSQLite package
-library(RSQLite)
+# library(RSQLite)
 ```
 
 To connect to the database, we need to first create a database driver and define the database type for activating the driver program.
 
 ``` {r Database2}
 # Creating a database driver
-drv <- dbDriver('SQLite')
-class(drv)
+# drv <- dbDriver('SQLite')
+# class(drv)
 ```
 
 Next, we connect to the database using dbConnect() function. The first argument is always the database driver and the second argument is usually DSN connection or direction path to the database file. Additional argument may be needed for other database structures, such as database user name, password, host, and port.
 
 ``` {r Database3, drv=drv}
 # Build connection to database
-con <- dbConnect(drv, 'data/diamonds.db')
-class(con)
+# con <- dbConnect(drv, 'data/diamonds.db')
+# class(con)
 ```
 
 Once we build the connection to the database, we can use functions from the DBI package to extract information from the database, such as table names, field names, etc.
 
 ``` {r Database4, con=con}
 # Extracting table names from the database
-dbListTables(con)
+# dbListTables(con)
 
 # Extracting field (column) names from diamond table
-dbListFields(con, name='diamonds')
+# dbListFields(con, name='diamonds')
 
 # Extracting field (column) names from DiamondColors table
-dbListFields(con, name='DiamondColors')
+# dbListFields(con, name='DiamondColors')
 ```
 
 Now we can use dbGetQuery() function to perform query from the database. dbGetQuery() returns a data.frame object from the query. Since dbGetQuery() has the argument "stringAsFactors", it's suggested to set it to FALSE, so the character data can be extract as its original type.
 
 ``` {r Database5, con=con}
 # Use SELECT * to query diamonds table from database
-diamondsTable <- dbGetQuery(con,
-                            "SELECT * FROM diamonds",
-                            stringsAsFactors=FALSE)
-head(diamondsTable)
+# diamondsTable <- dbGetQuery(con,
+#                            "SELECT * FROM diamonds",
+#                            stringsAsFactors=FALSE)
+# head(diamondsTable)
 
 # Use SELECT * to query DiamondColors table from database
-colorTable <- dbGetQuery(con,
-                            "SELECT * FROM DiamondColors",
-                            stringsAsFactors=FALSE)
-head(colorTable)
+# colorTable <- dbGetQuery(con,
+#                            "SELECT * FROM DiamondColors",
+#                            stringsAsFactors=FALSE)
+# head(colorTable)
 
 # Join the two tables
-longQuery <- "SELECT * FROM diamonds, diamondColors WHERE diamonds.color = DiamondColors.Color"
-diamondsJoin <- dbGetQuery(con, longQuery,
-                           stringsAsFactors=FALSE)
-head(diamondsJoin)
+# longQuery <- "SELECT * FROM diamonds, diamondColors WHERE diamonds.color = DiamondColors.Color"
+# diamondsJoin <- dbGetQuery(con, longQuery,
+#                           stringsAsFactors=FALSE)
+# head(diamondsJoin)
 
 # Disconnect the connection to database
-dbDisconnect(con)
+# dbDisconnect(con)
 ```
 
 Even though ODBC connection will disconnect once R is closed or connecting to a different database using dbConnect(), it is recommended to build a good habit to manually close the ODBC connect with dbDisconnect() to avoid any complication or error.
 
-#### 3.4 - Reading Data from other Software Formats
+## 3.4 - Reading Data from other Software Formats
 
 Technically speaking, we don't need to worry much about data saved in other statistical package format once we adopted to R. In some cases, we may need to load data sources in different format, for instance, a project that you had worked on before or a project that was completed by other researchers or scentist in different software package. The **foreign** package in R offers several functions similar to read.table for reading data source saved with different software package format. Here is a list of these functions.
 
@@ -212,7 +212,7 @@ Hadley Wickham developed a package, **haven**, which is similar to the **foreing
 |  read_sas |  SAS   |  
 |  read_stata  |   STATA  | 
 
-#### 3.5 - Reading RData File
+## 3.5 - Reading RData File
 
 The best way to store and share objects from R is with **RData** files are specific to R and can store as many objects as you'd like within a single file. It can also be opened in different operation systems, Windows, Mac, and Linux.
 
@@ -281,7 +281,7 @@ thatVect
 identical(smallVector, thatVect)
 ```
 
-#### 3.6 - Reading R Built-In Data
+## 3.6 - Reading R Built-In Data
 
 Similar to other statistical software, R offers a list of datasets from different packages, such as ggplot2, MASS, and ISLR. We demonstrate loading the diamonds dataset from ggplot2 package in this example.
 
@@ -293,9 +293,9 @@ data(diamonds, package='ggplot2')
 head(diamonds)
 ```
 
-Note: An alternative way to load the built-in datasets in R is importing the package before using the dataset.
+Note: An alternative way to load the built-in data sets in R is importing the package before using the data set.
 
-#### 3.7 - Reading Data from the Internet
+## 3.7 - Reading Data from the Internet
 
 Since the invention of the internet, many data resources have become available for public to use. If you are fortunate to find a well-managed data source from the internet, it could be efficiently scraped from the HTML format. In a more complex case, we may need to break down the HTML structure and extract the data that we need.
 
@@ -357,7 +357,7 @@ ribalta %>% html_nodes('table.food-items') %>%
 
 Note: Web-scraping is a subject that involves extensive knowledge in web development and computer programming, therefore, we are not going into the details of different web-scraping tools in R. It's important to note that R has the capability to extract data from the internet for analytic purpose.
 
-#### 3.8 - Reading JSON Data
+## 3.8 - Reading JSON Data
 
 JSON (Javascript Object Notation) is a common data format used in API and documentation database. JSON saves data into plain text format, which is suitable for nested data. There are two common packages in R for reading the JSON data, **rjson** and **jsonlite**. 
 
@@ -422,6 +422,6 @@ class(pizza$Details[[1]])
 
 Note: Since JSON data can be nested, the Detail column in this example is actually a column of data.frame objects. For this kind data.frame, we could use tools like dplyr, tidyr, and purrr to breakdown the nested data.frame and separate the data into columns.
 
-#### Summary:
+## Summary:
 
-Reading data is always the first step in data analytic. Nothing can be done without the data in R. For most academic research, the most common methods are using read.table() and read_excel() functions to read the CSV or Excel file into R for analysis. Rdata also provides the convenience to save the assigned variables and objects for continous project. Therefore, understanding the data format is an important step to become a good data analyst or scientist.
+Reading data is always the first step in data analytic. Nothing can be done without the data in R. For most academic research, the most common methods are using read.table() and read_excel() functions to read the CSV or Excel file into R for analysis. Rdata also provides the convenience to save the assigned variables and objects for continuous project. Therefore, understanding the data format is an important step to become a good data analyst or scientist.
