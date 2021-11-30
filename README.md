@@ -75,7 +75,7 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 #### Week 11: Business Presentation and Storytelling
 
-1. Businesss Presentation PPT
+1. Businesss Presentation and Storytelling PPT
 
 ### Resources: 
 - https://d.cxcore.net/Python/Python_Cookbook_3rd_Edition.pdf
@@ -83,5 +83,7 @@ This course introduces the most relevant data analytic tools in any data-driven 
 - https://www.tableau.com/learn/training/20211
 - https://www.forbes.com/sites/brentdykes/2016/03/31/data-storytelling-the-essential-data-science-skill-everyone-needs/?sh=6dbd711852ad
 - https://howto.mt.gov/_docs/Tableau-Cheat-Sheet.pdf
+- https://www.wilmu.edu/edtech/documents/the-science-of-effective-presenations---prezi-vs-powerpoint.pdf
+- https://www.slidescarnival.com/how-to-take-data-storytelling-in-your-presentation-to-the-next-level/11575
 
 Copyright © 2020 Norman Lo
