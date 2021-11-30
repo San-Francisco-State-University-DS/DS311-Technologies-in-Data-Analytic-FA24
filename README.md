@@ -63,7 +63,7 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 1. Exploratory Data Analysis with Python Notebook
 2. Exploratory Data Analysis with R Markdown
-3. Exploratory Data Analysis with Tableau Notebook
+3. Exploratory Data Analysis with Tableau
 
 #### Week 10: Writing Markdown Documentation
 
