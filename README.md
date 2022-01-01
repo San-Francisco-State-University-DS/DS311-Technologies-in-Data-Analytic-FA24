@@ -86,4 +86,4 @@ This course introduces the most relevant data analytic tools in any data-driven 
 - https://www.wilmu.edu/edtech/documents/the-science-of-effective-presenations---prezi-vs-powerpoint.pdf
 - https://www.slidescarnival.com/how-to-take-data-storytelling-in-your-presentation-to-the-next-level/11575
 
-Copyright © 2020 Norman Lo
+Copyright © 2021 Norman Lo
