@@ -9,8 +9,8 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 #### Week 1: Bash and Git Setup
 
-1. [Terminal Command Presentation (PPT)](https://docs.google.com/presentation/d/1PkbbVU6dErFHpJetqCep0aXWbUHzg9t1/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
-2. [Git Command Presentation (PPT)](https://docs.google.com/presentation/d/1sZs_jnNXrUELrdkYtcruFqzpff7ltH7h/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
+1. [Terminal Command Presentation (Slides)](https://docs.google.com/presentation/d/1PkbbVU6dErFHpJetqCep0aXWbUHzg9t1/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
+2. [Git Command Presentation (Slides)](https://docs.google.com/presentation/d/1sZs_jnNXrUELrdkYtcruFqzpff7ltH7h/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
 
 ### Part II: Introduction to Python
 
@@ -49,12 +49,12 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 #### Week 7: Introduction to Tableau
 
-1. Tableau Visualization (PPT)
-2. Practice using Tableau Visualization Tools
+1. Tableau Visualization (Jupyter Notebook)
+2. Practice using Tableau Visualization Tools 
 
 #### Week 8: Building Business Dashboard with Tableau
 
-1. Tableau Dashboard (PPT)
+1. Tableau Dashboard (Jupyter Notebook)
 2. Practice using Tableau Dashboard
 
 ### Part VI: Exploratory Data Analysis
@@ -73,9 +73,10 @@ This course introduces the most relevant data analytic tools in any data-driven 
 
 ### Part VI: Project Presentation and Storytelling
 
-#### Week 11: Business Presentation and Storytelling
+#### Week 11: Business Dashboard and Storytelling
 
-1. Businesss Presentation and Storytelling PPT
+1. [Building a Business Dashboard (Slides)](https://docs.google.com/presentation/d/1EgAQGiTPsH0Ab3ZwLj1hbpIsJ5aZbfWG/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
+2. Businesss Presentation and Storytelling PPT
 
 ### Resources: 
 - https://d.cxcore.net/Python/Python_Cookbook_3rd_Edition.pdf
@@ -86,4 +87,4 @@ This course introduces the most relevant data analytic tools in any data-driven 
 - https://www.wilmu.edu/edtech/documents/the-science-of-effective-presenations---prezi-vs-powerpoint.pdf
 - https://www.slidescarnival.com/how-to-take-data-storytelling-in-your-presentation-to-the-next-level/11575
 
-Copyright © 2021 Norman Lo
+Copyright © 2022 Norman Lo
