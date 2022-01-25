@@ -71,7 +71,7 @@ This course introduces the most relevant data analytic tools in any data-driven 
 2. [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 3. [GitHub Markdown](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
-### Part VI: Project Presentation and Storytelling
+### Part VII: Project Presentation and Storytelling
 
 #### Week 11: Business Dashboard and Storytelling
 
