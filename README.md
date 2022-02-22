@@ -32,6 +32,8 @@ This course introduces the most relevant data analytic tools in any data-driven 
 1. SQL Query (Jupyter Notebook)
 2. SQL Sub-Query (Jupyter Notebook)
 
+Resources: [SQLiteStudio](https://sqlitestudio.pl/)
+
 ### Part IV: Introduction to R
 
 #### Week 5: Introduction to Base R
