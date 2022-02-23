@@ -1,0 +1,124 @@
+---
+title: "DS311 - Basic R Lab Exercise"
+subtitle: "R Lab Exercise"
+author: "Your Name"
+date: "1/26/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+What is your name?
+
+```{r}
+# Write your code here!s
+print()
+```
+
+***
+
+# Question 2
+
+How many classes you are taking this semester?
+
+```{r}
+# Write your code here!
+print()
+```
+
+***
+
+# Question 3
+
+Calculate the following problems:
+
+a. 2 + 4 x 6
+
+```{r}
+# Write your code here!
+
+
+print()
+```
+
+b. $\sqrt{9}$
+
+```{r}
+# Write your code here!
+
+
+print()
+```
+
+c. $^6/_3$
+
+```{r}
+# Write your code here!
+
+
+print()
+```
+***
+
+## Question 4
+
+Calculate the following problem step-by-step.
+
+[5 - (6 x 3) + (4 / 2) x 10] + (20 / 5) - 10
+
+```{r}
+# Write your code here!
+
+
+print()
+```
+
+***
+
+## Question 5
+Write the code that accomplish the following tasks:
+
+Part a: Assign 4 to variable x
+
+Part b: Assign 12 to variable y
+
+Part c: Print both x and y to check their values
+
+Part d: Divide y by x and assign it to variable z
+
+part e: Print a statement to report your answer in Part d.
+
+```{r}
+# Write your code here!
+# Part a
+
+
+# Part b
+
+
+# Part c
+
+
+# Part d
+
+
+# Part e
+print(paste("y divided by x is equal to ", "Ans"))
+
+
+# Do not need to change the following code!
+if (exists("x") == TRUE | exists("y") == TRUE | exists("z") == TRUE){
+  if (x == 4 & y == 12 & z == 3) {
+  print("Congratulation!!  You completed the first activity in this class!!")
+  } else {
+    print("Sorry, you got it wrong!")
+  }
+} else {
+  print("You did not complete the last problem!")
+}
+```
+
