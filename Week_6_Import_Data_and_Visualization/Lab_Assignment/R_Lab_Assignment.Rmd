@@ -1,7 +1,7 @@
 ---
 title: "DS311 - R Lab Assignment"
 author: "Your Name"
-date: "1/26/2022"
+date: "8/22/2022"
 output: 
   html_document:
     theme: united
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Question 1
 
-Using **mtcars** data set in R, please answer the following questions.
+Using the **mtcars** data set in R, please answer the following questions.
 
 ```{r}
 # Loading the data
@@ -36,8 +36,6 @@ a. Report the number of variables and observations in the data set.
 ```{r}
 # Enter your code here!
 
-dim(mtcars)
-
 
 # Answer:
 print("There are total of _____ variables and _____ observations in this data set.")
@@ -49,8 +47,6 @@ b. Print the summary statistics of the data set and report how many discrete and
 
 ```{r}
 # Enter your code here!
-
-
 
 
 # Answer:
@@ -90,18 +86,17 @@ e. Create a crosstab that shows the number of observations belong to each cylind
 # Enter your code here!
 
 
-print("The most common car type in this data set is a car with ____ cylinders and ____ gears. There are total of _____ cars belong to this specification in the data set.")
+print("The most common car type in this data set is car with ____ cylinders and ____ gears. There are total of _____ cars belong to this specification in the data set.")
 ```
 
+
 *** 
-
-
 
 ### Question 2
 
 Use different visualization tools to summarize the data sets in this question.
 
-a. Using the **PlantGrowth** data set, visualize and compare the weight of the plant in the three separated group. Give labels to the title, x-axis, and y-axis on the graph. Write a paragraph to summarize your findings in this graph.
+a. Using the **PlantGrowth** data set, visualize and compare the weight of the plant in the three separated group. Give labels to the title, x-axis, and y-axis on the graph. Write a paragraph to summarize your findings.
 
 ```{r}
 # Load the data set
@@ -117,7 +112,7 @@ head(PlantGrowth)
 
 Result:
 
-=> Enter your results here!
+=> Report a paragraph to summarize your findings from the plot!
 
 
 
@@ -132,7 +127,7 @@ print("Most of the cars in this data set are in the class of ______ mile per gal
 
 
 
-c. Using the **USArrests** data set, create a pairs plot to display the correlations between the variables in the data set. Plot the scatter plot graph of **Murder** and **Assault**. Give labels to the title, x-axis, and y-axis on the graph. Write a paragraph to summarize your results from both plots.
+c. Using the **USArrests** data set, create a pairs plot to display the correlations between the variables in the data set. Plot the scatter plot with **Murder** and **Assault**. Give labels to the title, x-axis, and y-axis on the graph. Write a paragraph to summarize your results from both plots.
 
 ```{r}
 # Load the data set
@@ -148,15 +143,17 @@ head(USArrests)
 
 Result:
 
-=> Enter your result here!
+=> Report a paragraph to summarize your findings from the plot!
+
+
 
 ***
-
-
 
 ### Question 3
 
 Download the housing data set from www.jaredlander.com and find out what explains the housing prices in New York City.
+
+Note: Check your working directory to make sure that you can download the data into the data folder. 
 
 ```{r, echo=FALSE}
 # Load and clean the housing data set 
@@ -189,6 +186,6 @@ b. Create multiple plots to demonstrates the correlations between different vari
 
 c. Write a summary about your findings from this exercise.
 
-Enter your answer here!
+=> Enter your answer here!
 
 
