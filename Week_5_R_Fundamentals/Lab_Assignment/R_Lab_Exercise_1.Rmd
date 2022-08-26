@@ -198,17 +198,35 @@ df2  # Makes a data frame with three different data types
 # paste("Current Working Directory: ", wd2)
 ```
 
-### Installing packages
+### Installing and Loading Packages
 
-```{r}
+```{r, include=FALSE}
 # Install a new package, note the quotation marks
-# install.packages("dplyr")
+# install.packages("mass")
 
-# Loading the packageh, note no quotation marks
+# Install multiple packages at once
+# install.packages(c("dplyr", "ggplot2"))
+
+# Loading the package, note no quotation marks
 # library(dplyr)
 
 # Checking the package version
-# pacakgeVersion("dplyr")
+# packageVersion("dplyr")
+
+# List all functions in a package
+# ls("package:ggplot2")
+
+# Loading a function from package
+# ggplot2::geom_line
+
+# Update all packages
+# update.packages()
+
+# Unload a package
+# detach(package:ggplot2, unload=TRUE)
+
+# Help function
+# help(dplyr)
 
 # Checking the session info
 # sessionInfo()
