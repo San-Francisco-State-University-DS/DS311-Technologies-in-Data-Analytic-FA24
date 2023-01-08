@@ -1,7 +1,7 @@
 ---
 title: "R Control Flow Tools"
 author: "Norman Lo"
-date: "1/10/2022"
+date: "1/10/2023"
 output: pdf_document
 ---
 
@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # R Control Flow Tools
 
-In order to control the execution of the expression flow in R, we make use of the logical **Control flow tools** or control structures in R. R provides various standard control flow tools for testing different conditions and facilitates the flow of execution to be controled inside a function. We cover the following control flow tools in R in this lesson:
+In order to control the execution of the expression flow in R, we make use of the logical **Control flow tools** or control structures in R. R provides various standard control flow tools for testing different conditions and facilitates the flow of execution to be controlled inside a function. We cover the following control flow tools in R in this lesson:
 
 - if-else
 - switch
@@ -189,7 +189,7 @@ is.null(use.switch(6))
 
 ## 4.3 - ifelse
 
-The "if" statement in R is similar to the "if" statement in the traditional programming lanugage like C, C++, Java, etc. The ifelse() function in R is more like the application of if() function in Excel. The first argument specifies the conditional statement for testing, the second argument is the return value if the conditional test is TRUE, and the third argument is the return value if the conditional test is FALSE. Unlike the traditional "if" statement, one of the key advantage of ifelse() function in R is that it applies to vector and utilize vectorized operation. Here are few examples demonstrate the advantage of ifelse() function.
+The "if" statement in R is similar to the "if" statement in the traditional programming language like C, C++, Java, etc. The ifelse() function in R is more like the application of if() function in Excel. The first argument specifies the conditional statement for testing, the second argument is the return value if the conditional test is TRUE, and the third argument is the return value if the conditional test is FALSE. Unlike the traditional "if" statement, one of the key advantage of ifelse() function in R is that it applies to vector and utilize vectorized operation. Here are few examples demonstrate the advantage of ifelse() function.
 
 ``` {r ifelse1}
 # Test condition 1 == 1 with ifelse()
@@ -222,7 +222,7 @@ As you can see from these examples, ifelse() function can compute the conditiona
 
 All of the examples so far is setup to test a single condition within a statement. In many cases, it may be helpful to test multiple condition within a statement. We can apply the two conditional operators, **&&** and **||**, for logical **AND** and **OR** statements, respectively. 
 
-Many people confuse about the logical operators **&** verus **&&** and **|** verus **||**. Single operator and double operator perform the same logical operation, but the single operator performs elementwise comparisons in much the same way as arithmetic operators, where the double operator only evaluate the first element of each vector. Understanding the difference between the two has an signifcant impact to the performance of the program. Double operartor is best applying on "if" statement or loop operation, whereas single operator is best used with ifelse() function.
+Many people confuse about the logical operators **&** versus **&&** and **|** versus **||**. Single operator and double operator perform the same logical operation, but the single operator performs element wise comparisons in much the same way as arithmetic operators, where the double operator only evaluate the first element of each vector. Understanding the difference between the two has an significant impact to the performance of the program. Double operator is best applying on "if" statement or loop operation, whereas single operator is best used with ifelse() function.
 
 ``` {r ifelse2}
 # Create two vectors a and b
@@ -240,7 +240,7 @@ ifelse(a == 1 && b == 1, "YES", "NO")
 
 Like we mentioned in the previous sections, many of the R built-in functions utilize the vectorized operation to improve performance and computational power. However, there are some cases where the calculations need to be done by iterating a vector, list, or data.frame. Therefore, R also features the **for** and **while** loop statements for the control flow commands.
 
-The most common loop statement is a **for** loop. A for loop is used to iterate over a vector in R programming. A for loop include three arugments, which is similar to an English sentence. The first argument is a variable to be assigned a value from the vector. The middle argument is the key work "in". The last argument is the vector to be iterated. After for loop statement, a body of statement(s) can be added within the curly brackets "{ }" for execution under the specific condition. Let's take a quick look of this simple for loop example.
+The most common loop statement is a **for** loop. A for loop is used to iterate over a vector in R programming. A for loop include three arguments, which is similar to an English sentence. The first argument is a variable to be assigned a value from the vector. The middle argument is the key work "in". The last argument is the vector to be iterated. After for loop statement, a body of statement(s) can be added within the curly brackets "{ }" for execution under the specific condition. Let's take a quick look of this simple for loop example.
 
 ``` {r forloop1}
 # Create a for loop that loop through 1 to 10 and print each element from the vector
@@ -293,7 +293,7 @@ identical(fruitLength, fruitLength2)
 In R programming, **while** loop is less used compare to the **for** loop. While loop in R is again similar to while loop in any other programming language, which repeat the specific block of code until the condition is no longer satisfied. First the condition is evaluated and only when it holds TRUE, while loop enters the body. Here is an example to demonstrate the use of while loop and iterate a variable until it reaches 5.
 
 ``` {r whileloop1}
-# Assigne 1 to x
+# Assign 1 to x
 x <- 1
 
 # Create a while loop that continue to print x while it's less than or equal to 5.
@@ -306,7 +306,7 @@ while (x <= 5){
 
 ## 4.6 - break and next statements
 
-Under certain condition, we may need to jump or skip an interation or even break or stop the loop. We can use the **next** or **break** statement to control the flow of the program. Here are two examples illustrate the use of the two statements.
+Under certain condition, we may need to jump or skip an iteration or even break or stop the loop. We can use the **next** or **break** statement to control the flow of the program. Here are two examples illustrate the use of the two statements.
 
 ``` {r break_next1}
 # Create a for loop with next statement

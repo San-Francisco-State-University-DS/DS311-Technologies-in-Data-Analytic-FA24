@@ -1,7 +1,7 @@
 ---
 title: "DS311 - Basic R Lab Exercise"
-author: "Your Name"
-date: "8/23/2022"
+author: "Replace with Your Name"
+date: "1/10/2023"
 output:
   pdf_document: default
   html_document: default
@@ -92,7 +92,7 @@ c <- as.character(500)
 
 
 
-# Check the data type of the following variable
+# Check the data type of the new variable 'd'
 d <- a / b
 
 # Enter your code here!

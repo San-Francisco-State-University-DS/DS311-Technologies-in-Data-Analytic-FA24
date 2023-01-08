@@ -1,7 +1,7 @@
 ---
 title: "Basic Coding Syntax and Structure in R"
 author: "Norman Lo"
-date: "1/10/2022"
+date: "1/10/2023"
 output: pdf_document
 ---
 
@@ -55,18 +55,18 @@ The above examples demonstrates the simple mathematical operations in R. It is w
 # Parenthese always goes first
 (5 + 6) * 4
 
-# Mixed with the parenthese with other operators
+# Mixed with the parentheses with other operators
 5 + 6 * (4 - 2)
 
 ```
 
-Note: we have been using white space to separate the operators with the numbers in the previou examples, but it is not necessarily to leave a whitespace in coding.  However, it would be a good practice to improve the readability in your code.
+Note: we have been using white space to separate the operators with the numbers in the previous examples, but it is not necessarily to leave a white space in coding.  However, it would be a good practice to improve the readability in your code.
 
 # 1.2 - Variable
 
 ## Variable Assignment
 
-In any computer programming language, variable assignment is essential and a fundametal construct.  An assigment statement sets and/or re-sets the value stored in the storage location(s) dentoed by a variable name; in other words, it copies a vlaue into the variable. R actually provides more flexibility to variable assignment.  For instance, R does not require a declaration of a variable before assignment.  Almost any R object can be assigned to variable, such as function, statistical summary, plot, or any data type object.  
+In any computer programming language, variable assignment is essential and a fundamental construct.  An assignment statement sets and/or re-sets the value stored in the storage location(s) denoted by a variable name; in other words, it copies a value into the variable. R actually provides more flexibility to variable assignment.  For instance, R does not require a declaration of a variable before assignment.  Almost any R object can be assigned to variable, such as function, statistical summary, plot, or any data type object.  
 
 In R, we can use either "<-" or "=" for assignment statement (we suggest using the first assignment operator "<-"). Here are a few examples to demonstrate how to assign value to variable in R:
 
@@ -340,14 +340,14 @@ In the previous example, we created a vector with 10 numeric element from 1 to 1
 # Sequence from 10 to 1
 10:1
 
-# Sequance from -2 to 3
+# Sequence from -2 to 3
 -2:3
 
-# Sequance from 5 to -7
+# Sequence from 5 to -7
 5:-7
 ```
 
-Vectorize operations are widely applicable.  Suppose we have two vector with equal length, the vectorized operation allow each element in a vector to operate with the corresponding element in another vector.
+Vectorized operation is widely applicable.  Suppose we have two vectors with equal length, the vectorized operation allows each element in a vector to operate with the corresponding element in another vector.
 
 ``` {r Vector 4}
 # Create some vectors with the same length
@@ -376,7 +376,7 @@ x * y
 # Divide a vector by another one
 x / y
 
-# Take the exponental of one vector to the another one
+# Take the exponential of one vector to the another one
 x^y
 
 # Check the length of the sum of two vectors
@@ -535,17 +535,17 @@ Note: It is often time we write our own function for a repeated task in our prog
 |  :---:  |  :---:  |  :---:  |
 |  abs()  |  The absolute value of a numeric object  |  abs(x)  |
 |  c()  |  A generic function which combines its arguments  |   c(x)  |
-|  identical()  |  Test if 2 objects are **exactly** equal  |  indentical(x,y)  |
+|  identical()  |  Test if 2 objects are **exactly** equal  |  identical(x,y)  |
 |  length()  |  Return number of elements in a vector  |  length(x)  |
 |  mean()  |  Return the mean values of a vector  |  mean(x)  |
-|  plot()  |  Generic function for plitting of R objects  |  plot(x)  |
+|  plot()  |  Generic function for plotting of R objects  |  plot(x)  |
 |  range()  |  Return the minimum and maximum  |  range(x)  |
 |  sort()  |  Sort the elements in vector  |  sort(x)  |
 |  unique()  |  Remove duplicate entries from a vector  |  unique(x)  |
 
 ## R Functions Documentation
 
-R has the documentation pages for all R functions, data sets, and other objects, both for pacakges in the standard R distribution and for contributed packages.  To access these documentations, we can use the help operator "**?**".  For instance, we can check the documentation for the mathematical operators like "+" and "*" or logical operator "==" by the help operator.
+R has the documentation pages for all R functions, data sets, and other objects, both for packages in the standard R distribution and for contributed packages.  To access these documentations, we can use the help operator "**?**".  For instance, we can check the documentation for the mathematical operators like "+" and "*" or logical operator "==" by the help operator.
 
 ``` {r Basic Function 3}
 # Using the help operator for operational objects

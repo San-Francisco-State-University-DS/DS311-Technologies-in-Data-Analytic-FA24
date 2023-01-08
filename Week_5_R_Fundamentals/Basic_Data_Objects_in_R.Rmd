@@ -1,7 +1,7 @@
 ---
 title: "Basic Data Objects in R"
 author: "Norman Lo"
-date: "1/10/2022"
+date: "1/10/2023"
 output: pdf_document
 ---
 
@@ -41,11 +41,11 @@ theDF <- data.frame(First=x, Second=y, Sport=q)
 theDF
 ```
 
-data.frame is a complex object with many different **attributes**. The most popular attributes are number of rows, number of columns, and dimenion of the data.frame. R offers the functions to check these attributes at ease.
+data.frame is a complex object with many different **attributes**. The most popular attributes are number of rows, number of columns, and dimension of the data.frame. R offers the functions to check these attributes at ease.
 
 nrow() - check the number of rows of the data.frame
 ncol() - check the number of columns of the data.frame
-dim() - check the dimension (row x column) of hte data.frame.
+dim() - check the dimension (row x column) of the data.frame.
 
 ```{r data.frame 3, theDF=theDF}
 # Number of row
@@ -355,7 +355,7 @@ rownames(C)
 
 R has two special vectors called "letters" and "LETTERS". They are used to create vector of lowercase letters and uppercase letters. In the previous example, LETTER[1:10] represents a vector of uppercase letters A~J.
 
-When we are tranposing a matrix with assigned row and column names, the names will be transposed to match with the data. 
+When we are transposing a matrix with assigned row and column names, the names will be transposed to match with the data. 
 
 ``` {r Matrix 4, A=A, B=B, C=C}
 # Transpose Matrix A
