@@ -1,0 +1,282 @@
+---
+title: "DS311 - Basic R Lab Exercise"
+author: "Replace with Your Name"
+date: "1/10/2023"
+output:
+  pdf_document: default
+  html_document: default
+subtitle: R Lab Exercise
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Basic R Exercise
+
+## Section 1 - Data Type
+
+**Key Functions**
+- typeof()
+- as.numeric()
+- as.charater()
+
+### Numeric
+
+```{r}
+# Numeric - Double precision by default
+
+n1 <- 15  
+n1
+typeof(n1)
+
+n2 <- 1.5
+n2
+typeof(n2)
+```
+
+### Character
+
+```{r}
+# Character
+
+c1 <- "c"
+c1
+typeof(c1)
+
+c2 <- "a string of text"
+c2
+typeof(c2)
+
+```
+
+### Logical
+
+```{r}
+# Logical
+
+l1 <- TRUE
+l1
+typeof(l1)
+
+l2 <- F
+l2
+typeof(l2)
+```
+
+### Transforming Numerics and Characters
+
+``` {r}
+# Transforming numeric into characters
+num <- 10
+numToChar <- as.character(num)
+paste("num Type: ", typeof(num), " | numToChar: ", typeof(numToChar))
+
+# Transforming characters into numeric
+char <- "10"
+charToNum <- as.numeric(char)
+paste("char Type: ", typeof(num), " | charToNum: ", typeof(numToChar))
+```
+
+### Challenge:
+
+Complete the following tasks:
+
+``` {r}
+# Check the data type of the following variables
+a <- as.integer(500)
+b <- as.double(500)
+c <- as.character(500)
+
+# Enter your code here!
+
+
+
+# Check the data type of the new variable 'd'
+d <- a / b
+
+# Enter your code here!
+
+
+
+```
+
+***
+
+## Section 2 - Data Structure
+- is.vector()
+- is.matrix
+- cbind()
+- as.data.frame()
+
+### Vector
+
+```{r}
+# Vector
+
+v1 <- c(1, 2, 3, 4, 5)
+v1
+is.vector(v1)
+
+v2 <- c("a", "b", "c")
+v2
+is.vector(v2)
+
+v3 <- c(TRUE, TRUE, FALSE, FALSE, TRUE)
+v3
+is.vector(v3)
+```
+
+### Matrix
+
+```{r}
+# Matrix
+
+m1 <- matrix(c(T, T, F, F, T, F), nrow = 2)
+m1
+is.matrix(m1)
+
+m2 <- matrix(c("a", "b", 
+               "c", "d"), 
+               nrow = 2,
+               byrow = T)
+m2
+is.matrix(m2)
+```
+
+### Challenge:
+
+1. Create a vector of the 26 alphabet lower case letters in sequence. 
+2. Create a 2 by 13 matrix for the 26 English upper case letter in sequence.
+
+Hint: Check out the "letters" and "LETTERS" key words in R.
+
+```{r}
+# Enter your code here.
+
+
+
+```
+
+### DataFrame
+
+```{r}
+# Data Frame
+
+# Can combine vectors of the same length
+vNumeric   <- c(1, 2, 3)
+vCharacter <- c("a", "b", "c")
+vLogical   <- c(T, F, T)
+
+df1 <- cbind(vNumeric, vCharacter, vLogical)
+df1  # Coerces all values to most basic data type
+
+df2 <- as.data.frame(cbind(vNumeric, vCharacter, vLogical))
+df2  # Makes a data frame with three different data types
+```
+
+***
+
+## Section 3 - Setup Working Directory and Installing Packages
+
+**Key Functions:**
+- getwd()
+- setwd()
+- install.packages()
+- library()
+
+### Setting up your working directory
+
+``` {r}
+# Check your current working directory
+# wd1 <- getwd()
+# paste("Current Working Directory: ", wd1)
+
+# Setting the working directory for a project
+# setwd("c://.../project")
+# wd2 <- getwd()
+# paste("Current Working Directory: ", wd2)
+```
+
+### Installing and Loading Packages
+
+```{r, include=FALSE}
+# Install a new package, note the quotation marks
+# install.packages("mass")
+
+# Install multiple packages at once
+# install.packages(c("dplyr", "ggplot2"))
+
+# Loading the package, note no quotation marks
+# library(dplyr)
+
+# Checking the package version
+# packageVersion("dplyr")
+
+# List all functions in a package
+# ls("package:ggplot2")
+
+# Loading a function from package
+# ggplot2::geom_line
+
+# Update all packages
+# update.packages()
+
+# Unload a package
+# detach(package:ggplot2, unload=TRUE)
+
+# Help function
+# help(dplyr)
+
+# Checking the session info
+# sessionInfo()
+```
+
+***
+
+## Section 4 - Problem Solving
+
+Write the code that accomplish the following tasks:
+
+Part a: Assign 4 to variable x
+
+Part b: Assign 12 to variable y
+
+Part c: Print both x and y to check their values
+
+Part d: Divide y by x and assign it to variable z
+
+part e: Print a statement to report your answer in Part d.
+
+Once you finished and knit the RMarkdown file into html file, you should be able to see the message "Congratulation!!  You completed the first exercise in this section!!" in the html document.
+
+```{r}
+# Write your code here!
+# Part a
+
+
+# Part b
+
+
+# Part c
+
+
+# Part d
+
+
+# Part e
+print(paste("y divided by x is equal to ", z))
+
+
+# Do not need to change the following code!
+if (exists("x") == TRUE | exists("y") == TRUE | exists("z") == TRUE){
+  if (x == 4 & y == 12 & z == 3) {
+  print("Congratulation!!  You completed the first activity in this class!!")
+  } else {
+    print("Sorry, you got it wrong!")
+  }
+} else {
+  print("You did not complete the last problem!")
+}
+```
+

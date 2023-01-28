@@ -1,0 +1,508 @@
+---
+title: "R_Tidyverse_Package"
+author: "Norman Lo"
+date: "1/10/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tidyverse
+
+The **tidyverse** is an opinionated collection of R packages designed for data science. **dplyr** and **purrr** are the two most popular packages in tidyverse for data analytics. In this section, we combine the use of dplyr and tidyr packages to focus on data cleaning and manipulation on **tbl** (similar to dataframe) object. Even though the main stream for this process is processed with plyr, reshape2, and data.table packages, dplyr and tidyr has been gaining its popularity in the data science industry.
+
+## 1 - dplyr Package
+
+### 1.1 - tbl Object and data.frame
+
+Note: if you want to use both dplyr and plyr, the plyr package should be imported first, then import the dplyr package.  The reason is some of the object names are the same in the two packages and the last one being imported will be called.
+
+``` {r dplyr 1}
+# Importing the magritter package for pipe operation
+library(magrittr)
+
+# Importing the diamonds data set from ggplot2 library
+data(diamonds, package='ggplot2')
+dim(head(diamonds, n=4))
+
+# Using pipe(%>%) to pass on an object to another object
+diamonds %>% head(4) %>% dim
+
+# The diamonds data set is saved as tbl, in fact, it's saved as tbl_df
+class(diamonds)
+
+# If we are not using dplyr or tbl package, the data set will be displayed as regular dataframe.
+head(diamonds)
+
+# After loading the dplyr package, the data set will be displayed as tbl object
+library(dplyr)
+head(diamonds)
+
+# tbl displays the first 10 rows without the head() function
+diamonds
+```
+
+### 1.2 - SELECT
+
+```{r dplyr 2}
+# select() function takes the first argument data.frame, then the column names
+select(diamonds, carat, price)
+
+# Using a pipe(%>%) operator
+diamonds %>% select(carat, price)
+
+# Also can use vector c() within the pipe operator
+diamonds %>% select(c(carat, price))
+
+# We can also directly call out the column names with "select_" in standard evaluation version
+diamonds %>% select_('carat', 'price')
+
+# If we save the column names into a vector
+theCols <- c('carat', 'price')
+# We can use .dots to call out the column names in a vector
+diamonds %>% select_(.dots=theCols)
+
+# An alternative for select_, is nesting select() with one_of()
+diamonds %>% select(one_of('carat', 'price'))
+
+# In this case, we can pass in the vector of column names directly
+diamonds %>% select(one_of(theCols))
+
+# We can also use a traditional R method
+diamonds[,c('carat', 'price')]
+
+# We can also select using the column index
+select(diamonds, 1, 7)
+diamonds %>% select(1, 7)
+```
+
+### 1.3 - Partial Match
+
+``` {r dplyr 3}
+# We can find partial match from the data frame using start_with, ends_with, and contains
+diamonds %>% select(starts_with('c'))
+
+diamonds %>% select(ends_with('e'))
+
+diamonds %>% select(contains('l'))
+
+# Using "matches" to find specific columns
+# e.g. we can search for column names with "r" + "."(wildcard) + "t"
+diamonds %>% select(matches('r.+t'))
+
+# We can also remove the columns by using '-'
+diamonds %>% select(-carat, -price)
+diamonds %>% select(-c('carat', 'price'))
+diamonds %>% select(-1, -7)
+diamonds %>% select(-c(1,7))
+diamonds %>% select_(.dots=c('-carat', '-price'))
+
+# Another way is to use one_of() to select columns
+diamonds %>% select(-one_of('carat', 'price'))
+```
+
+### 1.4 - Filter
+
+``` {r dplyr 4}
+# Using filter() function, we can sort out the specific rows from the data frame with a given condition
+# e.g. sort out the rows that has value "Ideal" in the "cut" column
+diamonds %>% filter(cut == 'Ideal')
+
+# Using the traditional R syntax,
+diamonds[diamonds$cut == 'Ideal',]
+
+# We can use %in% to select the rows with one of the search values in a specific column
+# e.g. sort out the rows that has either value "Ideal" or "Good" in the cut column
+diamonds %>% filter(cut %in% c('Ideal', 'Good'))
+
+# We can use any R standard logical operators with filter() function
+diamonds %>% filter(price >= 1000)
+diamonds %>% filter(price != 1000)
+
+# Filtering with condition 1 AND condition 2
+diamonds %>% filter(carat>2, price<14000)
+diamonds %>% filter(carat>2 & price<14000)
+
+# Filtering with condition 1 OR condition 2
+diamonds %>% filter(carat<1 | carat>5)
+
+# When using filter_() function, we need to pass in the condition in string
+diamonds %>% filter_("cut == 'Ideal'")
+
+# We can also use "~" to replace the outter quote ""
+diamonds %>% filter_(~cut == 'Ideal')
+
+# The advantage for using "~" instead of the quote "" is that variable can be used in filter_()
+# e.g.
+theCut <- 'Ideal'
+diamonds %>% filter_(~cut == theCut)
+
+# When both the column name and row value are stored into variables,
+# we can use sprintf() function to combine in filter_()
+# Note: it's not recommended with more complex conditions
+# e.g.
+theCol <- 'cut'
+theCut <- 'Ideal'
+diamonds %>% filter_(sprintf("%s == '%s'", theCol, theCut))
+
+# A preferred method is using the interp() function in the lazyeval pacakge
+library(lazyeval)
+
+# Define the variables into an formula
+# as.name(theCol) -> cut
+# theCut -> 'Ideal'
+interp(~ a == b, a=as.name(theCol), b=theCut)
+
+# Put the formula into the filter_() function
+diamonds %>% filter_(interp(~ a == b, a=as.name(theCol), b=theCut))
+
+# If using dplyr 0.6.0 version, we can combine the use of filter() function and UQ() function from rlang pacakge
+# install.packages("rlang")
+library(rlang)
+diamonds %>% filter(UQ(as.name(theCol)) == theCut)
+```
+
+### 1.5 - Slice
+
+Unlike filter(), slice() function chooses rows by their ordinal position in the tbl. Grouped tbls use the ordinal position within the group. Vector indexing is required to pass into the slice() function.
+
+``` {r dplyr 5}
+# e.g. slicing the first 5 rows of data from the data frame
+diamonds %>% slice(1:5)
+
+# Suppose we want to slice the first 5 rows, the 8th row, and 15th to 20th rows
+diamonds %>% slice(1:5, 8, 15:20)
+```
+
+Note that the return data frame will not have the original index. When using a negative value, we are removing the row.
+
+``` {r dplyr 6}
+# e.g. removing the first row
+diamonds %>% slice(-1)
+```
+
+### 1.6 - Mutate
+
+**mutate()** function is used to update values of a column or adding new column to the data frame.
+
+```{r dplyr 7}
+# e.g. Adding a new column using price divided by carat
+diamonds %>% mutate(price/carat)
+
+# Display the new column, by selecting the columns in the original data frame,
+# then pass into mutate()
+diamonds %>% select(carat, price) %>% mutate(price/carat)
+
+# The new added column will not be given a column name
+# We can define the name "Ratio" to the new column,
+diamonds %>% select(carat, price) %>% mutate(Ratio=price/carat)
+
+# The newly added column can be used in the same mutate().
+# For instance, creating the "Ratio" column and a "Double" column by multiplying the "Ratio" by 2.
+diamonds %>%
+  select(carat, price) %>%
+  mutate(Ratio=price/carat, Double=Ratio*2)
+
+# Note that the code we use previously will not make change of the orignal data frame.
+# It can be saved into a new data frame object.
+# e.g.
+diamonds2 <- diamonds %>%
+  select(carat, price) %>%
+  mutate(Ratio=price/carat, Double=Ratio*2)
+
+diamonds2
+
+# We can continue to add new column to the new data frame
+diamonds2 <- diamonds2 %>%
+  mutate(Quadruple=Double*2)
+
+diamonds2
+
+# magrittr package also has a pipe operator (%<>%) to mutate the data frame
+# e.g.
+diamonds3 <- diamonds
+diamonds3
+
+diamonds3 %<>%
+  select(carat, price) %>%
+  mutate(Ratio=price/carat, Double=Ratio*2)
+diamonds3
+```
+
+### 1.7 - Summarize
+
+**summarize()** function will return mean, max, median or other similar statistics.  It allows direct call of the column name from the data frame, similar to with() in regular R.
+
+``` {r dplyr 8}
+# e.g. suppose we are interested the mean price in diamonds data set.
+summarize(diamonds, mean(price))
+
+# Using pipe operator,
+diamonds %>% summarize(mean(price))
+
+# One of the advantage using summarize() is that we can nest several statistics in one line of code.
+diamonds %>% 
+  summarize(AvgPrice = mean(price),
+            MedianPrice = median(price),
+            AvgCarat = mean(carat))
+```
+
+### 1.8 - Group By
+
+**group_by()** function complements the summarize() and makes it more powerful to use.  In most cases, we segment the data frame into different groups, then pass into summarize() function for specific statistics.
+
+``` {r dplyr 9}
+# e.g. suppose we are interested to know the average price for each cut grade
+diamonds %>% 
+  group_by(cut) %>%
+  summarize(AvgPrice = mean(price))
+
+# The combination (group_by() & summarize()) is much more efficient (faster) that using aggregate() 
+# It also improves the readability and nesting process.
+diamonds %>% 
+  group_by(cut) %>%
+  summarize(AvgPrice=mean(price), SumCarat=sum(carat))
+
+diamonds %>% 
+  group_by(cut, color) %>%
+  summarize(AvgPrice=mean(price), SumCarat=sum(carat))
+```
+
+### 1.9 - Arrange
+
+**arrange()** function can be used for sorting and ordering the data. Its application is more intuitive than the regular R order() and sort().
+
+``` {r dplyr 10}
+# e.g. suppose we want to order the group_by summary by the average price for each cut grade.
+diamonds %>% 
+  group_by(cut) %>%
+  summarize(AvgPrice=mean(price), SumCarat=sum(carat)) %>%
+  arrange(AvgPrice)
+
+# Note that the data frame will be ordered in an ascending order by default
+# We can arrange the data frame in descending order with desc()
+diamonds %>% 
+  group_by(cut) %>%
+  summarize(AvgPrice=mean(price), SumCarat=sum(carat)) %>%
+  arrange(desc(AvgPrice))
+```
+
+### 1.10 - Do
+
+**do()** is a general purpose complement to the specialized manipulation functions, such as filter(), select(), mutate(), summarize(), and arrange().  We can also use do() to perform arbitrary computation, returning either a data frame or arbitrary objects which will be sorted in a list.
+
+``` {r dplyr 11}
+# e.g. suppose we are interested to get the top N prices in each cut grade
+# First we create a function topN to arrange the price in descending order and return N rows
+topN <- function(x, N=5){
+  x %>% arrange(desc(price)) %>% head(N)
+}
+
+# We then nest the do() and group_by() to identify the top prices in each cut group.
+diamonds %>% group_by(cut) %>% do(topN(., N=3))
+
+# Note that the return object from the previous comment is a data frame.
+# If we define the return object name in the do(), it will return as a list for each cut grade.
+diamonds %>% group_by(cut) %>% do(top = topN(., N=3))
+
+# We can retreive the list elements if it's saved as data frame.
+topByCut <- diamonds %>% group_by(cut) %>% do(top = topN(., N=3))
+
+# The data frame has 5 rows and each rows contains a list of 3 rows data
+class(topByCut)
+class(topByCut$top)
+class(topByCut$top[[1]])
+
+# The first row in topByCut data frame will return the cut grade "Fair" prices
+topByCut$top[[1]]
+```
+
+## 2 - Tidyverse
+
+### 2.1 - Combine Rows and Columns ###
+
+Similar to base R rbind() and cbind(), dplyr has the similar functions bind_rows() and bind_cols(). The two are not exactly the same, which dplyr functions only apply to data.frame or tibble. Base R functions can be more generally applied to combine vectors into matrices or data.frame.
+
+``` {r tidyverse 1}
+# Import dplyr package
+library(dplyr)
+library(tibble)
+
+# Create a tibble with two columns
+sportLeague <- tibble(sport=c("Hockey", "Baseball", "Foodball", "Basketball"),
+                      league=c("NHL", "MLB", "NFL", "NBA"))
+
+# Create a tibble with one column
+trophy <- tibble(trophy=c("Stanley Cup", "Commissioner's Trophy",
+                          "Vince Lombardi Trophy", "Larry O'Brien Trophy"))
+
+# Combine the two tibbles into one
+trophies1 <- bind_cols(sportLeague, trophy)
+
+# Use tribble create another tibble 
+trophies2 <- tribble(
+  ~sport, ~league, ~trophy,
+  "Golf", "PGA", "Wanamaker Trophy",
+  "Tennis", "Wimbledon", "Wimbledon Trophy" 
+)
+
+# Combine the trophies1 with trophies2 (adding new row)
+trophies <- bind_rows(trophies1, trophies2)
+
+trophies
+```
+
+Note: bind_cols and bind_rows can be used to combine multiple tibble or data.frame
+
+### 2.2 - Join
+
+Joining table or data.frame is very important first step in data manipulation. In base R, we can use plyr or data.table to join two tables or data.frames. With dplyr package, we can use left_join(), right_join(), inner_join(), full_join(), semi_join(), and anti_join() for different join settings. We are using "diamonds" data set to demonstrate the use of join functions in dplyr.
+
+``` {r tidyverse 2}
+library(readr)
+colorsURL <- 'http://www.jaredlander.com/data/DiamondColors.csv'
+diamondColors <- read_csv(colorsURL)
+diamondColors
+
+data(diamonds, package='ggplot2')
+unique(diamonds$color)
+class(diamonds)
+
+library(dplyr)
+```
+
+
+Using left_join() with column 'color' in diamonds and 'Color' in diamondColors. Note that we are defining "diamonds" as the left tbl and "diamondColors" as the right tbl. We are joining the two tbls with different column names "color" from left and "Color" from right. When using argument "by", a vector of equality of the string for left table column name and right table column name.
+
+``` {r tidyverse 3}
+left_join(diamonds, diamondColors, by=c('color'='Color'))
+
+# Note: Since the data type of the two joined columns are different ('color' is factor and 'Color' is character),
+# after joining the two tbls, an warning message stated the column will be forced to be "character".
+
+# If we only want to extract some specific columns, we can also use the pipe operator
+# e.g. only select carat, color, price, description, and details columns after join
+left_join(diamonds, diamondColors, by=c('color'='Color')) %>%
+  select(carat, color, price, Description, Details)
+
+# Note: A left join will keep all fo the left tbl rows and match the rows from the right tbl.
+# If a value in the right tbl cannot be found in the left tbl, it will be dropped.
+# As observed, the joined tbl "Color" and "Description" distinct count is less than the "diamondColors" tbl.
+
+# Before Join:
+diamondColors %>% distinct(Color, Description)  # total 10 colors in the original tbl
+
+# After Join:
+left_join(diamonds, diamondColors, by=c('color'='Color')) %>%
+  distinct(color, Details)  # only 7 colors were matched to the left tbl
+
+
+# Using a right_join() function, we are keeping all of the existing rows from the right tbl 
+# and match with the rows in the left tbl.
+# In right join case, the joined tbl contains more rows than the left tbl (diamonds).
+# Before Join:
+diamonds %>% nrow
+
+# After Join:
+right_join(diamonds, diamondColors, by=c('color'='Color')) %>%
+  nrow
+
+# inner_join() returns a joined tbl with all the matches from the left and right tbls.
+inner_join(diamonds, diamondColors, by=c('color'='Color'))
+
+# In this example, the inner_join() should return the same rows as the left_join() because 
+# the right tbl has some rows that cannot be match with the left tbl.
+all.equal(left_join(diamonds, diamondColors, by=c('color'='Color')),
+          inner_join(diamonds, diamondColors, by=c('color'='Color')))
+
+# full_join() (usually called "Outter Join") will joined tbl with with all the rows from the two tbls,
+# even without match.
+full_join(diamonds, diamondColors, by=c('color'='Color'))
+
+# In this example, the full_join() should return the same rows as the right_join() because
+# the right tbl has 7 rows that cannot be match to the left tbl and will be included.
+all.equal(right_join(diamonds, diamondColors, by=c('color'='Color')),
+          full_join(diamonds, diamondColors, by=c('color'='Color')))
+
+# semi_join() returns only the first match from the left tbl to the right tbl, which is more like sorting.
+# If we set "diamondColors" as the left tbl, only the matched colors found in "diamonds" tbl will be returned.
+semi_join(diamondColors, diamonds, by=c('Color'='color'))
+
+# anti_join() is the opposite of the semi_join(), which returns the unmatch rows from the left tbl.
+# Since no color "K", "L", and "M" can be found in the 'diamonds' tbl, so anti_join() will return the three rows.
+anti_join(diamondColors, diamonds, by=c('Color'='color'))
+
+# We can also apply the filter() and unique() to achieve the semi_join() or anti_join(), but the later ones are preferred 
+# when dealing with data.frame.
+# semi_join() result,
+diamondColors %>% filter(Color %in% unique(diamonds$color))
+# anti_join() result,
+diamondColors %>% filter(!Color %in% unique(diamonds$color))
+```
+
+### 3.3 - Transform Data Format
+
+Both base R or melt() and dcast() in reshape2 package can be used to make transformation of the wide format data and long format data.  tidyr package is more like a advance version of reshape2 package. We are using the Columbia University reaction data set for demonstration.
+
+``` {r tidyverse 4}
+# We are using readr package from Tidyverse to read the text file and save it into a tibble.
+library(readr)
+emotion <- read_tsv('http://www.jaredlander.com/data/reaction.txt')
+
+# Note: read_tsv() function will return a message about the data type extracted from the text file.
+
+# Print the tibble / data.frame
+emotion
+
+```
+
+Note that the return tibble is a wide format.  We can tranform the data into a long format tibble by using gather(), which is similar to melt() in reshape2 package. We will stack the "Age", "BMI", "React", and "Regulate" into a single column called "Measurement". A new column will also be created and called "Type" to identify the column names being stacked.
+
+``` {r tidyverse 5}
+library(tidyr)
+emotion %>% 
+  gather(key=Type, value=Measurement, Age, BMI, React, Regulate)
+
+```
+
+Note: The first argument is the "key" which is used to identify the column names in the original tbl. The second argument "value" is to create a column with a new name from a collections of columns in the original tbl. After given the name to the new column, we then identify the column names that will be stacked into the new column.
+
+``` {r tidyverse 6}
+# The new tbl will be sorted by 'Type', which is the key defined in gather().
+# It would be difficult to identify the changes of the data, so we can arrange it by ID.
+emotionLong <- emotion %>%
+  gather(key=Type, value=Measurement, Age, BMI, React, Regulate) %>%
+  arrange(ID)
+
+emotionLong
+
+# Note: In the original data, each ID has 2 rows and each row contains Age, BMI, React, and Regulate column.
+# After the transformation, each ID turns into 4 rows and each row will have a Type and measurement column.
+
+# We can also appoint the columns to be included in the return tbl, or using "-" to excluded in the return tbl.
+# e.g.
+emotion %>%
+  gather(key=Type, value=Measurement, -ID, -Test, -Gender) %>%
+  arrange(ID)
+
+# Check to see if they are the same.
+identical(
+  emotion %>%
+    gather(key=Type, value=Measurement, Age, BMI, React, Regulate) %>%
+    arrange(ID),
+  emotion %>%
+    gather(key=Type, value=Measurement, -ID, -Test, -Gender) %>%
+    arrange(ID)
+)
+```
+
+Opposite to gather() is spread(), which is similar to dcast() in reshape2 package. spread() can transform the long format data into wide format data. In general, it can break the stacked data into columns.
+
+``` {r tidyverse 7}
+# e.g. Suppose we are interested to break the emotionLong data into it's original form.
+emotionLong %>%
+  spread(key=Type, value=Measurement)
+```
