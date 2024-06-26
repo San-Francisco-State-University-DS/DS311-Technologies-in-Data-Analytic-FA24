@@ -89,4 +89,6 @@ Resources: [SQLiteStudio](https://sqlitestudio.pl/)
 - https://www.wilmu.edu/edtech/documents/the-science-of-effective-presenations---prezi-vs-powerpoint.pdf
 - https://www.slidescarnival.com/how-to-take-data-storytelling-in-your-presentation-to-the-next-level/11575
 
+new added message
+
 Copyright © 2022 Norman Lo
