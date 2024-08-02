@@ -1,12 +1,13 @@
 ---
 title: "Reading Data into R"
 author: "Norman Lo"
-date: "1/10/2023"
+date: "08/02/2024"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
 ```
 
 # Reading Different Data Source into R
@@ -125,20 +126,18 @@ construct a standardized connection structure to achieve the task.
 In this section, we only demonstrate building a connect to a simple database SQLite. The example illustrates the steps that also apply to most of the database connection cases. First, we download a database file from the internet source. Then, we import the RSQLite package for building the connection to the SQLite database file.
 
 ``` {r Database1}
-# Downloading database file
-# download.file("http://www.jaredlander.com/data/diamonds.db",
-#              destfile="data/diamonds.db", mode="wb")
-
-# Loading RSQLite package
-# library(RSQLite)
+# Loading RSQLite package (install the package if needed)
+library(RSQLite)
 ```
 
 To connect to the database, we need to first create a database driver and define the database type for activating the driver program.
 
 ``` {r Database2}
 # Creating a database driver
-# drv <- dbDriver('SQLite')
-# class(drv)
+# makes use you are in the correct working directory, otherwise set it to the correct directory
+# setwd("C:/Users/...")
+filepath <- "data/r.db"
+drv <- dbDriver("SQLite")
 ```
 
 Next, we connect to the database using dbConnect() function. The first argument is always the database driver and the second argument is usually DSN connection or direction path to the database file. Additional argument may be needed for other database structures, such as database user name, password, host, and port.
@@ -146,8 +145,8 @@ Next, we connect to the database using dbConnect() function. The first argument 
 ``` {r Database3}
 # Code Block Setting: drv=drv
 # Build connection to database
-# con <- dbConnect(drv, 'data/diamonds.db')
-# class(con)
+con <- dbConnect(drv, dbname=filepath)
+class(con)
 ```
 
 Once we build the connection to the database, we can use functions from the DBI package to extract information from the database, such as table names, field names, etc.
@@ -155,13 +154,11 @@ Once we build the connection to the database, we can use functions from the DBI 
 ``` {r Database4}
 # Code Block Setting: con=con
 # Extracting table names from the database
-# dbListTables(con)
+dbListTables(con)
 
-# Extracting field (column) names from diamond table
-# dbListFields(con, name='diamonds')
+# Extracting field (column) names from family table
+dbListFields(con, name='family')
 
-# Extracting field (column) names from DiamondColors table
-# dbListFields(con, name='DiamondColors')
 ```
 
 Now we can use dbGetQuery() function to perform query from the database. dbGetQuery() returns a data.frame object from the query. Since dbGetQuery() has the argument "stringAsFactors", it's suggested to set it to FALSE, so the character data can be extract as its original type.
@@ -169,25 +166,13 @@ Now we can use dbGetQuery() function to perform query from the database. dbGetQu
 ``` {r Database5}
 # Code Block Setting: con=con
 # Use SELECT * to query diamonds table from database
-# diamondsTable <- dbGetQuery(con,
-#                            "SELECT * FROM diamonds",
-#                            stringsAsFactors=FALSE)
-# head(diamondsTable)
-
-# Use SELECT * to query DiamondColors table from database
-# colorTable <- dbGetQuery(con,
-#                            "SELECT * FROM DiamondColors",
-#                            stringsAsFactors=FALSE)
-# head(colorTable)
-
-# Join the two tables
-# longQuery <- "SELECT * FROM diamonds, diamondColors WHERE diamonds.color = DiamondColors.Color"
-# diamondsJoin <- dbGetQuery(con, longQuery,
-#                           stringsAsFactors=FALSE)
-# head(diamondsJoin)
+df <- dbGetQuery(con,
+              "SELECT * FROM family",
+              stringsAsFactors=FALSE)
+head(df)
 
 # Disconnect the connection to database
-# dbDisconnect(con)
+dbDisconnect(con)
 ```
 
 Even though ODBC connection will disconnect once R is closed or connecting to a different database using dbConnect(), it is recommended to build a good habit to manually close the ODBC connect with dbDisconnect() to avoid any complication or error.
