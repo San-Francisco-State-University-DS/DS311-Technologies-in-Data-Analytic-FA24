@@ -12,27 +12,27 @@ This course introduces the most relevant and popluar data analytic tools in the 
 1. [Terminal Command Presentation (Slides)](https://docs.google.com/presentation/d/1PkbbVU6dErFHpJetqCep0aXWbUHzg9t1/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
 2. [Git Command Presentation (Slides)](https://docs.google.com/presentation/d/1sZs_jnNXrUELrdkYtcruFqzpff7ltH7h/edit?usp=sharing&ouid=102813602615816934510&rtpof=true&sd=true)
 
-### Part II: Introduction to Python
+### Part II: Basic SQL Queries
 
-#### Week 2: Python Data Structure
-
-1. Basic Coding Syntax (Jupyter Notebook)
-2. Basic Data Structure (Jupyter Notebook)
-3. Control Flow Tools (Jupyter Notebook)
-
-#### Week 3: Pandas and MatPlotLib
-
-1. Pandas (Jupyter Notebook )
-2. Matplotlib (Jupyter Notebook)
-
-### Part III: Basic SQL Queries
-
-#### Week 4: SQL Queries and Subqueries
+#### Week 2: SQL Queries and Subqueries
 
 1. SQL Query (Jupyter Notebook)
 2. SQL Sub-Query (Jupyter Notebook)
 
 Resources: [SQLiteStudio](https://sqlitestudio.pl/)
+
+### Part III: Introduction to Python
+
+#### Week 3: Python Data Structure
+
+1. Basic Coding Syntax (Jupyter Notebook)
+2. Basic Data Structure (Jupyter Notebook)
+3. Control Flow Tools (Jupyter Notebook)
+
+#### Week 4: Pandas and MatPlotLib
+
+1. Pandas (Jupyter Notebook )
+2. Matplotlib (Jupyter Notebook)
 
 ### Part IV: Introduction to R
 
