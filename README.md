@@ -91,4 +91,4 @@ Resources: [SQLiteStudio](https://sqlitestudio.pl/)
 
 new added message
 
-Copyright © 2022 Norman Lo
+Copyright © 2024 Norman Lo
