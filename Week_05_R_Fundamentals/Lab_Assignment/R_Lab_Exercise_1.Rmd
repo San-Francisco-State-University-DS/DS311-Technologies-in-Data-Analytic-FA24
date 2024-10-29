@@ -1,10 +1,10 @@
 ---
 title: "DS311 - Basic R Lab Exercise"
-author: "Replace with Your Name"
-date: "1/10/2023"
+author: "Norman Lo"
+date: "10/25/2024"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 subtitle: R Lab Exercise
 ---
 
@@ -75,7 +75,7 @@ paste("num Type: ", typeof(num), " | numToChar: ", typeof(numToChar))
 # Transforming characters into numeric
 char <- "10"
 charToNum <- as.numeric(char)
-paste("char Type: ", typeof(num), " | charToNum: ", typeof(numToChar))
+paste("char Type: ", typeof(char), " | charToNum: ", typeof(charToNum))
 ```
 
 ### Challenge:
@@ -89,14 +89,14 @@ b <- as.double(500)
 c <- as.character(500)
 
 # Enter your code here!
-
+is.double(a)
 
 
 # Check the data type of the new variable 'd'
 d <- a / b
 
 # Enter your code here!
-
+is.character(d)
 
 
 ```
@@ -262,8 +262,9 @@ Once you finished and knit the RMarkdown file into html file, you should be able
 
 
 # Part d
-
-
+x = 2
+y = 3
+z = 10
 # Part e
 print(paste("y divided by x is equal to ", z))
 
